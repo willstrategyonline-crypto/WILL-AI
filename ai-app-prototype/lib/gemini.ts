@@ -23,10 +23,8 @@ export function resolveGeminiModelId(model: string) {
 }
 
 export function getGeminiClient() {
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) {
-    throw new Error("GEMINI_API_KEY is not set");
-  }
+  // ビルド時（サーバー側）にエラーで落ちるのを防ぐため、空の文字列をデフォルトにする
+  const apiKey = process.env.GEMINI_API_KEY || "dummy_key_for_build";
   return new GoogleGenAI({ apiKey });
 }
 
